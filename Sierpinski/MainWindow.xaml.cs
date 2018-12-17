@@ -24,21 +24,32 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 using Microsoft.Win32;
-
-using static System.Windows.SystemParameters;
 
 namespace Sierpinski
 {
     public partial class MainWindow : Window
     {
+        #region MainWindow  Class Constant Definitions
+
         private readonly double CanvasInset = 40d;
         private readonly double SurfaceMargin = 20d;
 
+        private readonly string DefaultImageFileName = "Sierpinski";
+        private readonly int PNGDefaultFileFiler = 4;
+
+        #endregion MainWindow Class Constant Definitions
+
+        #region MainWindow Class Data Attributes
+
         private GasketSettings GasketSettings;
         public UserSettings UserSettings { get; private set; }
+        private SierpinskiGasket theGasket;
+
+        #endregion MainWindow Class Data Attributes
+
+        #region MainWindow Class Constructor
 
         public MainWindow(UserSettings userSettings)
         {
@@ -47,6 +58,10 @@ namespace Sierpinski
             UserSettings = userSettings;
             GasketSettings = new GasketSettings(UserSettings);
         }
+
+        #endregion MainWindow Class Constructor
+
+        #region MainWindow Class Event Handlers
 
         private void OnMainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -57,7 +72,6 @@ namespace Sierpinski
         {
             SetCanvasSize();
             DrawGasket();
-
         }
 
         private void OnRightMouseButtonClicked(object sender, MouseButtonEventArgs e)
@@ -122,6 +136,10 @@ namespace Sierpinski
             }
         }
 
+        #endregion MainWindow Class Event Handlers
+
+        #region MainWindow Class Implementation
+
         private void UpdateGasketSettings()
         {
 
@@ -129,12 +147,56 @@ namespace Sierpinski
 
         private void SaveGasketImage()
         {
+            var bitmapSettings = GetBitmapFileSettings();
 
+            if (theGasket != null)
+            {
+                if (bitmapSettings != null)
+                {
+                    theGasket.Save(GasketCanvas,
+                                   bitmapSettings.Encoder,
+                                   bitmapSettings.BitmapFileName);
+                }
+            }
+        }
+
+        private BitmapFileSettings GetBitmapFileSettings()
+        {
+            BitmapFileSettings bitmapSettings = null;
+
+            var saveFileDialog = new SaveFileDialog
+            {
+                Title = "Save Sierpinski Gasket Image File",
+                FileName = DefaultImageFileName,
+                Filter = BitmapFileSettings.FileFilters,
+                FilterIndex = PNGDefaultFileFiler,
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                AddExtension = true,
+                OverwritePrompt = true,
+                ValidateNames = true,
+            };
+
+            bool? dialogResult = saveFileDialog.ShowDialog();
+
+            if (dialogResult.HasValue && dialogResult.Value == true)
+            {
+                var encoding = (BitmapEncoding)(saveFileDialog.FilterIndex - 1);
+                var imageFileName = saveFileDialog.FileName;
+
+                bitmapSettings = new BitmapFileSettings(encoding, imageFileName);
+            }
+
+            return bitmapSettings;
         }
 
         private void ShowAboutDialogBox()
         {
+            var aboutDialog = new AboutSierpinskiDialog
+            {
+                Owner = this
+            };
 
+            aboutDialog.ShowDialog();
         }
 
         private double SquaredCanvasSize
@@ -189,13 +251,10 @@ namespace Sierpinski
 
             Debug.WriteLine($"GasketSettings: {GasketSettings}");
 
-            /*
-            var gasket =
-            new SierpinskiGasket(6, Brushes.White, Brushes.Transparent, 1.25d, points);
-            */
-
-            var gasket = new SierpinskiGasket(GasketSettings);
-            gasket.Draw(GasketCanvas);
+            theGasket = new SierpinskiGasket(GasketSettings);
+            theGasket.Draw(GasketCanvas);
         }
+
+        #endregion MainWindow Class Implementation
     }
 }

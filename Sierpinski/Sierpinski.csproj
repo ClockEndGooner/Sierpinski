@@ -55,11 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AboutSierpinskiDialog.xaml.cs" />
+    <Compile Include="BitmapFileSettings.cs" />
     <Compile Include="DrawingUtils.cs" />
     <Compile Include="GasketSettings.cs" />
     <Compile Include="SierpinskiGasket.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="UserSettings.cs" />
+    <Page Include="AboutSierpinskiDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SierpinskiIco.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

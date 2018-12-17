@@ -50,7 +50,7 @@ namespace Sierpinski
 
         #endregion Triangle Class Properties
 
-        #region Triangle Class Constructor
+        #region Triangle Class Constructors
 
         public Triangle(Point[] points, Brush border, double borderWidth, Brush fill)
         {
@@ -70,7 +70,7 @@ namespace Sierpinski
             Fill = fill;
         }
 
-        #endregion Triangle Class Constructor
+        #endregion Triangle Class Constructors
 
         #region Triangle Class Implementation
 

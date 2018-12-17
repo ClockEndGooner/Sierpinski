@@ -20,9 +20,11 @@
 //////////////////////////////////////////////////////////////////////////////
 
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Sierpinski
 {
@@ -41,6 +43,9 @@ namespace Sierpinski
         private readonly int TopPoint = 0;
         private readonly int LeftPoint = 1;
         private readonly int RightPoint = 2;
+
+        private readonly double DefaultDPIX = 96d;
+        private readonly double DefaultDPIY = 96d;
 
         #endregion SierpinskiGasket Class Constant Definitions
 
@@ -141,6 +146,42 @@ namespace Sierpinski
 
                 DrawTriangle(level - 1, new Point[] { rightMiddle, bottomMiddle, points[RightPoint] });
             }
+        }
+
+        public bool Save(Canvas gasketCanvas, BitmapEncoder bitmapEncoder,
+                                 string spiroFileName)
+        {
+            var canvasRect = VisualTreeHelper.GetDescendantBounds(gasketCanvas);
+
+            var renderBitmap =
+            new RenderTargetBitmap((int)canvasRect.Width,
+                                   (int)canvasRect.Height,
+                                   DefaultDPIX, DefaultDPIY,
+                                   PixelFormats.Default);
+
+            var drawingVisual = new DrawingVisual();
+
+            using (var drawingContext = drawingVisual.RenderOpen())
+            {
+                var visualBrush = new VisualBrush(gasketCanvas);
+
+                drawingContext.DrawRectangle(visualBrush, null,
+                               new Rect(new Point(), canvasRect.Size));
+
+            }
+
+            renderBitmap.Render(drawingVisual);
+            bitmapEncoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+
+            using (var bitmapStream = new MemoryStream())
+            {
+                bitmapEncoder.Save(bitmapStream);
+                bitmapStream.Close();
+
+                File.WriteAllBytes(spiroFileName, bitmapStream.ToArray());
+            }
+
+            return File.Exists(spiroFileName);
         }
 
         #endregion SierpinskiGasket Class Implementation

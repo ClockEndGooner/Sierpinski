@@ -27,7 +27,7 @@
         mc:Ignorable="d"
         Name="MainWIndow" Title="Sierpinski Gasket" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="Manual" Width="Auto" Height="Auto" MinWidth="475" MinHeight="475"
-        Background="#FF2B2B30" Foreground="White" Loaded="OnMainWindowLoaded" Closing="OnMainWindowClosing">
+        Background="#FF2B2B30" Foreground="White" Icon="SierpinskiIco.png" Loaded="OnMainWindowLoaded" Closing="OnMainWindowClosing">
     <Window.Resources>
         <ContextMenu x:Key="GasketContextMenu">
             <MenuItem Name="SettingsMenuItem" Header="Se_ttings..." Click="OnContextMenuItemClicked"
