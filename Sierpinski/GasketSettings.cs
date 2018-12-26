@@ -27,16 +27,32 @@ namespace Sierpinski
 {
     public sealed class GasketSettings
     {
-        public int Level { get; private set; }
+        public int Levels { get; private set; }
         public Color BorderColor { get; private set; }
         public Color FillColor { get; private set; }
         public Color BackgroundColor { get; private set; }
         public double LineWidth { get; private set; }
         public Point[] Points { get; set; }
 
+        public GasketSettings(int levels, Color borderColor, Color fillColor,
+                              Color backgroundColor, double lineWidth,
+                              Point[] points = null)
+        {
+            Levels = levels;
+            BorderColor = borderColor;
+            FillColor = fillColor;
+            BackgroundColor = backgroundColor;
+            LineWidth = lineWidth;
+
+            if (points != null && points.Length > 0)
+            {
+                Points = points;
+            }
+        }
+
         public GasketSettings(UserSettings settings)
         {
-            Level = settings.Level;
+            Levels = settings.Levels;
             BorderColor = settings.BorderColor;
             FillColor = settings.FillColor;
             BackgroundColor = settings.BackgroundColor;
@@ -49,7 +65,7 @@ namespace Sierpinski
             var pointsTrace = DrawingUtils.FormatPointsAsString(Points);
 
             trace.AppendLine($"Contents of {GetType().Name}");
-            trace.AppendLine($"    Level: {Level}");
+            trace.AppendLine($"    Levels: {Levels}");
             trace.AppendLine($"    BorderColor: {BorderColor}");
             trace.AppendLine($"    FillColor: {FillColor}");
             trace.AppendLine($"    BackgroundColor: {BackgroundColor}");

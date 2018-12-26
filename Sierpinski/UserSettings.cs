@@ -91,16 +91,16 @@ namespace Sierpinski
 
         [UserScopedSetting()]
         [DefaultSettingValue("5")]
-        public int Level
+        public int Levels
         {
             get
             {
-                return Convert.ToInt32(this["Level"]);
+                return Convert.ToInt32(this["Levels"]);
             }
 
             set
             {
-                this["Level"] = value;
+                this["Levels"] = value;
             }
         }
 

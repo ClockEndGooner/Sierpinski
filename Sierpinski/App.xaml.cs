@@ -84,7 +84,7 @@ namespace Sierpinski
                 theUserSettings.FillColor = theMainWindow.UserSettings.FillColor;
                 theUserSettings.BackgroundColor = theMainWindow.UserSettings.BackgroundColor;
                 theUserSettings.LineWidth = theMainWindow.UserSettings.LineWidth;
-                theUserSettings.Level = theMainWindow.UserSettings.Level;
+                theUserSettings.Levels = theMainWindow.UserSettings.Levels;
 
                 updatedSettings = true;
             }

@@ -1,0 +1,120 @@
+﻿<!--
+
+  SettingsDialog.xaml
+  Settings dialog box for drawing a Sierpinski Gasket.
+  Copyright (C) 2018 - W. Wonneberger
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+                                                                           -->
+<Window x:Class="Sierpinski.SettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sierpinski"
+        xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"        
+        mc:Ignorable="d"
+        Title="Sierpinski Gasket Settings" SizeToContent="WidthAndHeight" 
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FF2B2B30" 
+        Foreground="White" Icon="SierpinskiIco.png" ShowInTaskbar="False">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Width" Value="65"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF808080"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+            Border Color:
+        </Label>
+        <xctk:ColorPicker Name="BorderColorPicker" Grid.Row="0" Grid.Column="1" 
+                          Margin="10" Width="200" Height="25"
+                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+            Background Color:
+        </Label>
+        <xctk:ColorPicker Name="BackgroundColorPicker" Grid.Row="1" Grid.Column="1" 
+                          Margin="10" Width="200" Height="25"
+                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+
+        <Label Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+            Fill Color:
+        </Label>
+        <xctk:ColorPicker Name="FillColorPicker" Grid.Row="2" Grid.Column="1" 
+                          Margin="10" Width="200" Height="25"
+                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+
+        <Label Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+            Line Thickness:
+        </Label>
+        <xctk:DecimalUpDown Name="LineThicknessDecimalUpDown" Grid.Row="3" Grid.Column="1" 
+                            Width="75" Height="25" Margin="10" HorizontalAlignment="Left"
+                            Background="#FF09080A" Foreground="White"
+                            Value="1.5" Increment=".25" Minimum=".25" Maximum="4" />
+
+        <Label Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+            Levels:
+        </Label>
+        <xctk:DecimalUpDown Name="LevelsDecimalUpDown" Grid.Row="4" Grid.Column="1" 
+                            Width="75" Height="25" Margin="10" HorizontalAlignment="Left"
+                            Background="#FF09080A" Foreground="White"
+                            Value="1" Increment="1" Minimum="1" Maximum="8" />
+        
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="5">
+            <Button Name="SettingsOKButon" IsDefault="True" Click="OnSettingsOKClick">
+                <AccessText>_OK</AccessText>
+            </Button>
+            <Button Name="CancelSettingsButon" IsCancel="True">
+                <AccessText>_Cancel</AccessText>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -142,7 +142,18 @@ namespace Sierpinski
 
         private void UpdateGasketSettings()
         {
+            var settingsDialog = new SettingsDialog(GasketSettings)
+            {
+                Owner = this
+            };
 
+            bool? settingsChanaged = settingsDialog.ShowDialog();
+
+            if (settingsChanaged.HasValue && settingsChanaged.Value == true)
+            {
+                GasketSettings = settingsDialog.Settings;
+                DrawGasket();
+            }
         }
 
         private void SaveGasketImage()
@@ -221,6 +232,9 @@ namespace Sierpinski
 
         private void DrawGasket()
         {
+            GasketCanvas.Children.Clear();
+            SetCanvasSize();
+
             var width = GasketCanvas.Width;
             var height = GasketCanvas.Height;
 

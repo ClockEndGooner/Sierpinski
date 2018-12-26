@@ -78,7 +78,7 @@ namespace Sierpinski
 
         public SierpinskiGasket(GasketSettings settings)
         {
-            Level = settings.Level;
+            Level = settings.Levels;
             ForegroundColor = new SolidColorBrush(settings.BorderColor);
             BackgroundColor = new SolidColorBrush(settings.BackgroundColor);
             GasketFill = new SolidColorBrush(settings.FillColor);
@@ -95,6 +95,7 @@ namespace Sierpinski
         {
             Surface = drawingSurface;
             Surface.Background = BackgroundColor;
+         
             //
             // Recursively call DrawTrianlge() to render the 
             // gasket on the caller supplied Panel.
@@ -113,8 +114,13 @@ namespace Sierpinski
                 triangle.Draw(Surface);
 
                 Count++;
+
+#if Enable_Draw_Triangles_Trace
+
                 Debug.WriteLine($"Triangle {Count}:");
                 Debug.WriteLine(triangle.ToString());
+
+#endif // Enable_Draw_Triangles_Trace
             }
 
             else
@@ -184,6 +190,6 @@ namespace Sierpinski
             return File.Exists(spiroFileName);
         }
 
-        #endregion SierpinskiGasket Class Implementation
+#endregion SierpinskiGasket Class Implementation
     }
 }
