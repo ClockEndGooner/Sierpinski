@@ -27,12 +27,18 @@ namespace Sierpinski
 {
     public sealed class GasketSettings
     {
+        #region GasketSettings Class Properties
+
         public int Levels { get; private set; }
         public Color BorderColor { get; private set; }
         public Color FillColor { get; private set; }
         public Color BackgroundColor { get; private set; }
         public double LineWidth { get; private set; }
         public Point[] Points { get; set; }
+
+        #endregion GasketSettings Class Properties
+
+        #region GasketSettings Class Constructors
 
         public GasketSettings(int levels, Color borderColor, Color fillColor,
                               Color backgroundColor, double lineWidth,
@@ -59,6 +65,10 @@ namespace Sierpinski
             LineWidth = settings.LineWidth;
         }
 
+        #endregion GasketSettings Class Constructors
+
+        #region GasketSettings Class Implementation
+
         public override string ToString()
         {
             var trace = new StringBuilder();
@@ -74,5 +84,7 @@ namespace Sierpinski
 
             return trace.ToString();
         }
+
+        #endregion GasketSettings Class Implementation
     }
 }

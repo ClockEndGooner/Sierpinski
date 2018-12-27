@@ -21,13 +21,14 @@
 
 using System;
 using System.Configuration;
+using System.Text;
 using System.Windows.Media;
 
 namespace Sierpinski
 {
     public class UserSettings : ApplicationSettingsBase
     {
-        #region UserSettings Data Properties 
+        #region UserSettings Class Data Properties 
 
         [UserScopedSetting()]
         [DefaultSettingValue("20")]
@@ -164,6 +165,28 @@ namespace Sierpinski
             }
         }
 
-        #endregion UserSettings Data Properties 
+        #endregion UserSettings Class Data Properties 
+
+        #region UserSettings Class Data Implementation
+
+        public override string ToString()
+        {
+            var trace = new StringBuilder();
+
+            trace.AppendLine($"Contents of {GetType().Name}:");
+            trace.AppendLine($"               Left: {Left}");
+            trace.AppendLine($"                Top: {Top}");
+            trace.AppendLine($"              Width: {Width}");
+            trace.AppendLine($"             Height: {Height}");
+            trace.AppendLine($"             Levels: {Levels}");
+            trace.AppendLine($"          LineWidth: {LineWidth}");
+            trace.AppendLine($"        BorderColor: {BorderColor}");
+            trace.AppendLine($"          FillColor: {FillColor}");
+            trace.AppendLine($"    BackgroundColor: {BackgroundColor}");
+
+            return trace.ToString();
+        }
+
+        #endregion UserSettings Class Data Implementation
     }
 }

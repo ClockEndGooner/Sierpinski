@@ -50,13 +50,6 @@ namespace Sierpinski
             theMainWindow.Show();
         }
 
-        public UserSettings LoadUserSettings()
-        {
-            var settings = new UserSettings();
-
-            return settings;
-        }
-
         private void OnApplicationExit(object sender, ExitEventArgs exitEvent)
         {
             if (theMainWindow != null)
@@ -66,6 +59,17 @@ namespace Sierpinski
                     theUserSettings.Save();
                 }
             }
+        }
+
+        #endregion Sierpinski App Event Handlers
+
+        #region Sierpinski App Implementation
+
+        public UserSettings LoadUserSettings()
+        {
+            var settings = new UserSettings();
+
+            return settings;
         }
 
         private bool UpdateUserSettings()
@@ -92,6 +96,6 @@ namespace Sierpinski
             return updatedSettings;
         }
 
-        #endregion Sierpinski App Event Handlers
+        #endregion Sierpinski App Implementation
     }
 }

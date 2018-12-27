@@ -28,7 +28,7 @@
         mc:Ignorable="d"
         Title="Sierpinski Gasket Settings" SizeToContent="WidthAndHeight" 
         WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FF2B2B30" 
-        Foreground="White" Icon="SierpinskiIco.png" ShowInTaskbar="False">
+        Foreground="White" Icon="SmallSierpinskiIcon.png" ShowInTaskbar="False">
     <Grid>
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
@@ -37,6 +37,7 @@
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Width" Value="65"/>
                 <Setter Property="Height" Value="25"/>
+                <Setter Property="Padding" Value="10" />
                 <Setter Property="Margin" Value="5"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -55,6 +56,31 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+
+            <Style TargetType="{x:Type xctk:ColorPicker}">
+                <Setter Property="Width"  Value="170" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="DisplayColorAndName" Value="False" />
+            </Style>
+
+            <Style TargetType="{x:Type xctk:DecimalUpDown}">
+                <Setter Property="Width"  Value="170" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Margin" Value="10" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Background" Value="#FF09080A" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
         </Grid.Resources>
 
         <Grid.RowDefinitions>
@@ -65,47 +91,38 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+        <Label Grid.Row="0" Grid.Column="0">
             Border Color:
         </Label>
-        <xctk:ColorPicker Name="BorderColorPicker" Grid.Row="0" Grid.Column="1" 
-                          Margin="10" Width="200" Height="25"
-                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+        <xctk:ColorPicker Name="BorderColorPicker" Grid.Row="0" Grid.Column="1" />
 
-        <Label Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+        <Label Grid.Row="1" Grid.Column="0">
             Background Color:
         </Label>
-        <xctk:ColorPicker Name="BackgroundColorPicker" Grid.Row="1" Grid.Column="1" 
-                          Margin="10" Width="200" Height="25"
-                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+        <xctk:ColorPicker Name="BackgroundColorPicker" Grid.Row="1" Grid.Column="1" />
 
-        <Label Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+        <Label Grid.Row="2" Grid.Column="0">
             Fill Color:
         </Label>
-        <xctk:ColorPicker Name="FillColorPicker" Grid.Row="2" Grid.Column="1" 
-                          Margin="10" Width="200" Height="25"
-                          HorizontalAlignment="Left" DisplayColorAndName="False" />
+        <xctk:ColorPicker Name="FillColorPicker" Grid.Row="2" Grid.Column="1" />
 
-        <Label Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+        <Label Grid.Row="3" Grid.Column="0">
             Line Thickness:
         </Label>
         <xctk:DecimalUpDown Name="LineThicknessDecimalUpDown" Grid.Row="3" Grid.Column="1" 
-                            Width="75" Height="25" Margin="10" HorizontalAlignment="Left"
-                            Background="#FF09080A" Foreground="White"
-                            Value="1.5" Increment=".25" Minimum=".25" Maximum="4" />
+                            Value="1.5" Increment=".25" Minimum=".25" Maximum="10" />
 
-        <Label Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">
+        <Label Grid.Row="4" Grid.Column="0">
             Levels:
         </Label>
         <xctk:DecimalUpDown Name="LevelsDecimalUpDown" Grid.Row="4" Grid.Column="1" 
-                            Width="75" Height="25" Margin="10" HorizontalAlignment="Left"
-                            Background="#FF09080A" Foreground="White"
-                            Value="1" Increment="1" Minimum="1" Maximum="8" />
+                            Value="1" Increment="1" Minimum="1" Maximum="10" />
         
         <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" 
                     HorizontalAlignment="Right" Margin="5">

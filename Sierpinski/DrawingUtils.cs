@@ -26,6 +26,8 @@ namespace Sierpinski
 {
     public static class DrawingUtils
     {
+        #region DrawingUtils Class Implementation
+
         public static string FormatPointsAsString(Point[] points)
         {
             var pointsTrace = new StringBuilder();
@@ -42,5 +44,7 @@ namespace Sierpinski
 
             return pointsTrace.ToString();
         }
+
+        #endregion DrawingUtils Class Implementation
     }
 }

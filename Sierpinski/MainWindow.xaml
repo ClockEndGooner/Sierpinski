@@ -27,7 +27,8 @@
         mc:Ignorable="d"
         Name="MainWIndow" Title="Sierpinski Gasket" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="Manual" Width="Auto" Height="Auto" MinWidth="475" MinHeight="475"
-        Background="#FF2B2B30" Foreground="White" Icon="SierpinskiIco.png" Loaded="OnMainWindowLoaded" Closing="OnMainWindowClosing">
+        Background="#FF2B2B30" Foreground="White" Icon="SmallSierpinskiIcon.png" Loaded="OnMainWindowLoaded" 
+        Closing="OnMainWindowClosing" KeyUp="OnKeyUp">
     <Window.Resources>
         <ContextMenu x:Key="GasketContextMenu">
             <MenuItem Name="SettingsMenuItem" Header="Se_ttings..." Click="OnContextMenuItemClicked"
@@ -43,20 +44,20 @@
     <Grid Name="MainLayoutGrid">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-                <Setter Property="FontSize" Value="22"/>
-                <Setter Property="Width" Value="44"/>
-                <Setter Property="Height" Value="44"/>
-                <Setter Property="Margin" Value="4"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="Width" Value="44" />
+                <Setter Property="Height" Value="44" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
@@ -76,21 +77,21 @@
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Viewbox Name="CanvasViewbox" Grid.Row="0" Grid.Column="0" 
-                 MouseRightButtonUp="OnRightMouseButtonClicked" Margin="0,4,0,36" Grid.RowSpan="2">
+        <Viewbox Name="CanvasViewbox" Grid.Row="0" Grid.Column="0" Margin="0,4,0,36" 
+                 MouseRightButtonUp="OnRightMouseButtonClicked" Grid.RowSpan="2">
             <Canvas Name="GasketCanvas" Background="#FF5248B8"   
                     MouseRightButtonUp="OnRightMouseButtonClicked" />
         </Viewbox>
 
         <ToolBarPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Stretch" Background="#FF2B2B30">
             <StackPanel Orientation="Horizontal" Background="#FF2B2B30" HorizontalAlignment="Center">
-                <Button Name="SettingsButton" Margin="4" Click="OnButtonClick" ToolTip="Sierpinski Gasket Settings...">
+                <Button Name="SettingsButton" Click="OnButtonClick" ToolTip="Sierpinski Gasket Settings...">
                     <TextBlock Text="&#xE115;" />
                 </Button>
-                <Button Name="SaveButton" Margin="4" Click="OnButtonClick" ToolTip="Save Sierpinski Gasket...">
+                <Button Name="SaveButton" Click="OnButtonClick" ToolTip="Save Sierpinski Gasket...">
                     <TextBlock Text="&#xE159;" />
                 </Button>
-                <Button Name="AboutButton" Margin="4" Click="OnButtonClick" 
+                <Button Name="AboutButton" Click="OnButtonClick" 
                         FontFamily="Segoe UI" FontSize="28" ToolTip="About Sierpinski Gasket...">
                     <TextBlock Text="?" />
                 </Button>

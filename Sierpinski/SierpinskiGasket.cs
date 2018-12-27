@@ -62,7 +62,7 @@ namespace Sierpinski
 
         #endregion SierpinskiGasket Class Data Members
 
-        #region SierpinskiGasket Class Constructor
+        #region SierpinskiGasket Class Constructors
 
         public SierpinskiGasket(int level, Brush foregroundColor, Brush backgroundColor,
                                 Brush fillColor, double lineWidth, Point[] points)
@@ -85,14 +85,17 @@ namespace Sierpinski
             LineWidth = settings.LineWidth;
             Points = settings.Points;
             Count = 0;
+
         }
 
-        #endregion SierpinskiGasket Class Constructor
+        #endregion SierpinskiGasket Class Constructors
 
         #region SierpinskiGasket Class Implementation
 
         public void Draw(Panel drawingSurface)
         {
+            Count = 0;
+
             Surface = drawingSurface;
             Surface.Background = BackgroundColor;
          
@@ -101,6 +104,8 @@ namespace Sierpinski
             // gasket on the caller supplied Panel.
             //
             DrawTriangle(Level, Points);
+
+            Debug.WriteLine($"Total Number of Triangles in a Level {Level} Gasket: {Count}");
         }
 
         private void DrawTriangle(int level, Point[] points)

@@ -132,7 +132,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SierpinskiIco.png" />
+    <Resource Include="SierpinskiIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SmallSierpinskiIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -65,7 +65,15 @@ namespace Sierpinski
 
         private void OnMainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            var trace =
+            $"Width: {Width.ToString()}  Height: {Height.ToString()}  Top: {Top.ToString()}  Left: {Left.ToString()}  ";
 
+            Debug.Write(trace);
+
+            trace =
+            $"GasketCanvas.Width: {GasketCanvas.Width.ToString()}  Height: {GasketCanvas.Height.ToString()}";
+
+            Debug.WriteLine(trace);
         }
 
         private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
@@ -81,6 +89,14 @@ namespace Sierpinski
             ShowGasketContextMenu(mouseClickTarget);
 
             Debug.WriteLine($"Window Size - Width: {Width}  Height: {Height}");
+        }
+
+        private void OnKeyUp(object sender, KeyEventArgs keyPressedEvent)
+        {
+            if (keyPressedEvent.Key == Key.Apps)
+            {
+                ShowGasketContextMenu(this);
+            }
         }
 
         private void ShowGasketContextMenu(UIElement contextMenuTarget)
@@ -153,6 +169,15 @@ namespace Sierpinski
             {
                 GasketSettings = settingsDialog.Settings;
                 DrawGasket();
+
+                UserSettings = new UserSettings()
+                {
+                    Levels = GasketSettings.Levels,
+                    LineWidth = GasketSettings.LineWidth,
+                    BorderColor = GasketSettings.BorderColor,
+                    BackgroundColor = GasketSettings.BackgroundColor,
+                    FillColor = GasketSettings.FillColor
+                };
             }
         }
 
@@ -232,6 +257,8 @@ namespace Sierpinski
 
         private void DrawGasket()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             GasketCanvas.Children.Clear();
             SetCanvasSize();
 
@@ -267,6 +294,8 @@ namespace Sierpinski
 
             theGasket = new SierpinskiGasket(GasketSettings);
             theGasket.Draw(GasketCanvas);
+
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
 
         #endregion MainWindow Class Implementation

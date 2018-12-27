@@ -1,8 +1,8 @@
 ﻿<!--
 
-  AboutSierpinskiDialog.xaml
-  About Sierpinski Gasket application dialog box Layout
-  Copyright (C) 2018 - W. Wonneberger
+ AboutSierpinskiDialog.xaml
+ About Sierpinski Gasket application dialog box Layout
+ Copyright (C) 2018 - W. Wonneberger
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -25,9 +25,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sierpinski"
         mc:Ignorable="d"
-        Name="AboutDialog" Title="About Sierpinski" 
+        Name="AboutDialog" Title="About Sierpinski" Icon="SmallSierpinskiIcon.png"
         Background="#FF2B2B30" Foreground="White" WindowStartupLocation="CenterOwner" 
-                SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SierpinskiIco.png" Loaded="OnDialogLoad" ShowInTaskbar="False" KeyDown="OnKeyDown"  >
+                SizeToContent="WidthAndHeight" ResizeMode="NoResize" Loaded="OnDialogLoad" ShowInTaskbar="False" KeyDown="OnKeyDown"  >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="15,5,15,5" />
@@ -102,7 +102,7 @@
         <Image Name="SierpinskiIcon" Grid.Row="0" Grid.Column="0"
                HorizontalAlignment="Center" VerticalAlignment="Center"
                Width="64" Height="64" Margin="30,20,30,50" 
-               Source="SierpinskiIco.png" />
+               Source="SierpinskiIcon.png" />
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="10">
             <TextBlock Style="{StaticResource AppInfoStyle}" FontWeight="Bold"><Run Name="AppNameRun" /></TextBlock>
             <TextBlock Style="{StaticResource AppInfoStyle}" FontStyle="Italic">
